@@ -18,7 +18,12 @@ class AI
      */
     public static function getGender($text)
     {
-        return 'Male';
+        if(strpos($text,'คะ')!==false || strpos($text,'ค่ะ')!==false || strpos($text,'ฉัน')!==false || strpos($text,'หนู')!==false)
+            return 'Female';
+        else if(strpos($text,'คับ')!==false || strpos($text,'ครับ')!==false || strpos($text,'ผม')!==false)
+            return 'Male';
+        else
+            return 'Unknown';
     }
 
     /**
@@ -26,7 +31,13 @@ class AI
      */
     public static function getSentiment($text)
     {
-        return 'Neutral';
+
+        if(strpos($text,'ไม่ดี')!==false || strpos($text,'bad')!==false || strpos($text,'เลว')!==false || strpos($text,'fuck')!==false)
+            return 'Negative';
+        else if(strpos($text,'ดี')!==false || strpos($text,'good')!==false || strpos($text,'เยี่ยม')!==false || strpos($text,'สุดยอด')!==false)
+            return 'Positive';
+        else
+            return 'Neutral';
     }
 
     /**
@@ -34,7 +45,16 @@ class AI
      */
     public static function getRudeWords($text)
     {
-        return ['แสส'];
+         $result = [];
+         $rudeword=array("ไม่ดี","เลว","กาก","ควย","สัส","เหี้ย");
+         for($i=0;$i<sizeof($rudeword);$i++){
+            if(strpos($text,$rudeword[$i])!==false){
+                array_push($result,[$rudeword[$i]]);
+             }
+         }
+         return $result;
+            
+
     }
 
     /**
@@ -42,6 +62,19 @@ class AI
      */
     public static function getLanguages($text)
     {
-        return ['TH', 'EN'];
+        
+        $result = [];
+        $re = '/[ก-๛]+/u';
+        preg_match_all($re, $text, $matches, PREG_SET_ORDER, 0);
+        if (!empty($matches)) {
+            array_push($result, 'TH');
+        }
+        $re2 = '/[a-zA-Z]+/u';
+        preg_match_all($re2, $text, $matches, PREG_SET_ORDER, 0);
+        if (!empty($matches)) {
+            array_push($result, 'EN');
+        }
+        
+        return $result;
     }
 }
