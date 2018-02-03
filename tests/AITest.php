@@ -43,13 +43,13 @@ final class AITest extends TestCase
     public function testgetLanguages_TH(): void
     {
         $result = AI::getLanguages('ก');
-        $expected_result = 'TH';
+        $expected_result = ['TH'];
         $this->assertEquals($expected_result, $result);
     }
     public function testgetLanguages_EN(): void
     {
         $result = AI::getLanguages('a');
-        $expected_result = 'EN';
+        $expected_result = ['EN'];
         $this->assertEquals($expected_result, $result);
     }
    
