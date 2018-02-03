@@ -46,7 +46,7 @@ class AI
     public static function getRudeWords($text)
     {
          $result = [];
-         $rudeword=array("ไม่ดี","เลว","กาก","ควย","สัส","เหี้ย");
+         $rudeword=array("เหี้ย","ไม่ดี","เลว","กาก","ควย","สัส");
          for($i=0;$i<sizeof($rudeword);$i++){
             if(strpos($text,$rudeword[$i])!==false){
                 array_push($result,[$rudeword[$i]]);
