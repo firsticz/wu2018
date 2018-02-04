@@ -47,7 +47,7 @@ class AI
     {
          $result = [];
          $rudeword=array("เหี้ย","ไม่ดี","เลว","กาก","ควย","สัส");
-         for($i=0;$i<siz($rudeword);$i++){
+         for($i=0;$i<size($rudeword);$i++){
             if(strpos($text,$rudeword[$i])!==false){
                 array_push($result,$text);
              }
